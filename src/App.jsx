@@ -1,35 +1,84 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="page">
+        <header className="header">
+          <img
+            className="header__logo"
+            srcSet="./images/Vector-header.png"
+            alt="Logo com a escrita Around the US"
+          />
+          <hr className="header__line" />
+        </header>
+        <main className="content">
+          <div className="profile">
+            <button className="profile__button-avatar">
+              <div className="profile__avatar-container">
+                <img
+                  className="profile__avatar"
+                  srcSet="./images/Avatar.png"
+                  alt="Foto de perfil"
+                />
+                <span className="profile__edit-icon"></span>
+              </div>
+            </button>
+            <div className="profile__info">
+              <div className="profile__text">
+                <span className="profile__text-name">Jacques Cousteau</span>
+                <span className="profile__text-description">Explorador</span>
+              </div>
+              <button className="profile__button-edit">
+                <img
+                  className="profile__button-edit-icon"
+                  srcSet="./images/edit-button.svg"
+                  alt="Botão de edição"
+                />
+              </button>
+            </div>
+            <button className="profile__button-add">
+              <picture>
+                <source
+                  media="(max-width: 601px)"
+                  srcSet="./images/add-button-mobile.svg"
+                />
+                <img
+                  className="profile__button-add-icon"
+                  srcSet="./images/add-button.svg"
+                  alt="Botao de ediçao"
+                />
+              </picture>
+            </button>
+          </div>
+          <div className="elements"></div>
+          <template id="card-template">
+            <div className="element">
+              <img className="element__image" srcSet=" " alt=" " />
+              <button className="element__trash-button" type="button">
+                <img
+                  className="element__trash-image"
+                  srcSet="./images/trash-button.svg"
+                  alt="Botão de excluir"
+                />
+              </button>
+              <div className="element__subtitle">
+                <p className="element__text"></p>
+                <button className="element__like-button" type="button">
+                  <img
+                    className="element__like-image"
+                    srcSet="./images/like-button.svg"
+                    alt="Botão de curtir"
+                  />
+                </button>
+              </div>
+            </div>
+          </template>
+        </main>
+        <footer className="footer">
+          <p className="footer__text">&copy; 2025 Around The U.S.</p>
+        </footer>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
