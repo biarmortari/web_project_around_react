@@ -1,3 +1,8 @@
+import logo from "./images/logo.png";
+import avatar from "./images/Avatar.png";
+import editButton from "./images/edit-button.svg";
+import addButton from "./images/add-button.svg";
+
 function App() {
   return (
     <>
@@ -5,7 +10,7 @@ function App() {
         <header className="header">
           <img
             className="header__logo"
-            srcSet="./images/Vector-header.png"
+            src={logo}
             alt="Logo com a escrita Around the US"
           />
           <hr className="header__line" />
@@ -16,7 +21,7 @@ function App() {
               <div className="profile__avatar-container">
                 <img
                   className="profile__avatar"
-                  srcSet="./images/Avatar.png"
+                  src={avatar}
                   alt="Foto de perfil"
                 />
                 <span className="profile__edit-icon"></span>
@@ -30,7 +35,7 @@ function App() {
               <button className="profile__button-edit">
                 <img
                   className="profile__button-edit-icon"
-                  srcSet="./images/edit-button.svg"
+                  src={editButton}
                   alt="Botão de edição"
                 />
               </button>
@@ -43,7 +48,7 @@ function App() {
                 />
                 <img
                   className="profile__button-add-icon"
-                  srcSet="./images/add-button.svg"
+                  srcSet={addButton}
                   alt="Botao de ediçao"
                 />
               </picture>
