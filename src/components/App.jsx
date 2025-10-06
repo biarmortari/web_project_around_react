@@ -1,20 +1,13 @@
-import logo from "./images/logo.png";
-import avatar from "./images/Avatar.png";
-import editButton from "./images/edit-button.svg";
-import addButton from "./images/add-button.svg";
+import avatar from "../images/Avatar.png";
+import editButton from "../images/edit-button.svg";
+import addButton from "../images/add-button.svg";
+import Header from "./Header/Header";
 
 function App() {
   return (
     <>
       <div className="page">
-        <header className="header">
-          <img
-            className="header__logo"
-            src={logo}
-            alt="Logo com a escrita Around the US"
-          />
-          <hr className="header__line" />
-        </header>
+        <Header />
         <main className="content">
           <div className="profile">
             <button className="profile__button-avatar">
