@@ -8,6 +8,28 @@ import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/NewCard/NewCard";
 import EditProfile from "./components/Popup/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/EditAvatar/EditAvatar";
+import Card from "./components/Card/Card";
+
+const cards = [
+  {
+    isLiked: false,
+    _id: "5d1f0611d321eb4bdcd707dd",
+    name: "Yosemite Valley",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+    owner: "5d1f0611d321eb4bdcd707dd",
+    createdAt: "2019-07-05T08:10:57.741Z",
+  },
+  {
+    isLiked: false,
+    _id: "5d1f064ed321eb4bdcd707de",
+    name: "Lake Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+    owner: "5d1f0611d321eb4bdcd707dd",
+    createdAt: "2019-07-05T08:11:58.324Z",
+  },
+];
+
+console.log(cards);
 
 function Main() {
   const [popup, setPopup] = useState(null);
@@ -27,7 +49,7 @@ function Main() {
   return (
     <>
       <main className="content">
-        <div className="profile">
+        <section className="profile">
           <button
             className="profile__button-avatar"
             type="button"
@@ -73,30 +95,14 @@ function Main() {
               />
             </picture>
           </button>
-        </div>
-        <div className="elements"></div>
-        <template id="card-template">
-          <div className="element">
-            <img className="element__image" src=" " alt=" " />
-            <button className="element__trash-button" type="button">
-              <img
-                className="element__trash-image"
-                src="./images/trash-button.svg"
-                alt="Botão de excluir"
-              />
-            </button>
-            <div className="element__subtitle">
-              <p className="element__text"></p>
-              <button className="element__like-button" type="button">
-                <img
-                  className="element__like-image"
-                  src="./images/like-button.svg"
-                  alt="Botão de curtir"
-                />
-              </button>
-            </div>
-          </div>
-        </template>
+        </section>
+        <section className="cards">
+          <ul className="cards__list">
+            {cards.map((card) => (
+              <Card key={card._id} card={card} />
+            ))}
+          </ul>
+        </section>
         {popup && (
           <Popup onClose={handleClosePopup} title={popup.title}>
             {popup.children}
