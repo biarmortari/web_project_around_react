@@ -1,8 +1,25 @@
-import avatar from "../images/Avatar.png";
-import editButton from "../images/edit-button.svg";
-import addButton from "../images/add-button.svg";
+import avatar from "../../images/avatar.png";
+import editButton from "../../images/edit-button.svg";
+import addButton from "../../images/add-button.svg";
+import addButtonMobile from "../../images/add-button-mobile.svg";
+
+import { useState } from "react";
+import Popup from "./components/Popup/Popup";
+import NewCard from "./components/Popup/NewCard/NewCard";
 
 function Main() {
+  const [popup, setPopup] = useState(null);
+
+  const newCardPopup = { title: "New card", children: <NewCard /> };
+
+  function handleOpenPopup(popup) {
+    setPopup(popup);
+  }
+
+  function handleClosePopup() {
+    setPopup(null);
+  }
+
   return (
     <>
       <main className="content">
@@ -30,15 +47,16 @@ function Main() {
               />
             </button>
           </div>
-          <button className="profile__button-add">
+          <button
+            className="profile__button-add"
+            type="button"
+            onClick={() => handleOpenPopup(newCardPopup)}
+          >
             <picture>
-              <source
-                media="(max-width: 601px)"
-                srcSet="./images/add-button-mobile.svg"
-              />
+              <source media="(max-width: 601px)" src={addButtonMobile} />
               <img
                 className="profile__button-add-icon"
-                srcSet={addButton}
+                src={addButton}
                 alt="Botao de ediçao"
               />
             </picture>
@@ -47,11 +65,11 @@ function Main() {
         <div className="elements"></div>
         <template id="card-template">
           <div className="element">
-            <img className="element__image" srcSet=" " alt=" " />
+            <img className="element__image" src=" " alt=" " />
             <button className="element__trash-button" type="button">
               <img
                 className="element__trash-image"
-                srcSet="./images/trash-button.svg"
+                src="./images/trash-button.svg"
                 alt="Botão de excluir"
               />
             </button>
@@ -60,13 +78,18 @@ function Main() {
               <button className="element__like-button" type="button">
                 <img
                   className="element__like-image"
-                  srcSet="./images/like-button.svg"
+                  src="./images/like-button.svg"
                   alt="Botão de curtir"
                 />
               </button>
             </div>
           </div>
         </template>
+        {popup && (
+          <Popup onClose={handleClosePopup} title={popup.title}>
+            {popup.children}
+          </Popup>
+        )}
       </main>
     </>
   );

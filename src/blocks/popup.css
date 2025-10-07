@@ -8,8 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  visibility: hidden;
-  opacity: 0;
+  /*visibility: hidden;
+  opacity: 0;*/
   transition: visibility 0.5s, opacity 0.5s ease;
   z-index: 1;
 }
@@ -21,6 +21,7 @@
 
 .popup__container {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   background-color: #ffffff;
@@ -146,25 +147,11 @@
   right: -40px;
   width: 40px;
   height: 40px;
-  background-color: transparent;
-  background-size: cover;
+  background: transparent url("../images/close-button.svg") center no-repeat;
+  background-size: 35px 35px;
   border: none;
   cursor: pointer;
   transition: opacity 0.5s ease;
-}
-
-.popup__close-button-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(50%, -50%);
-  width: 40px;
-  height: 40px;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  z-index: 2;
 }
 
 .popup__close-button:hover {
