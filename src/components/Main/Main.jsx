@@ -6,11 +6,13 @@ import addButtonMobile from "../../images/add-button-mobile.svg";
 import { useState } from "react";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/NewCard/NewCard";
+import EditProfile from "./components/Popup/EditProfile/EditProfile";
 
 function Main() {
   const [popup, setPopup] = useState(null);
 
   const newCardPopup = { title: "New card", children: <NewCard /> };
+  const editProfilePopup = { title: "Edit profile", children: <EditProfile /> };
 
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -39,7 +41,11 @@ function Main() {
               <span className="profile__text-name">Jacques Cousteau</span>
               <span className="profile__text-description">Explorador</span>
             </div>
-            <button className="profile__button-edit">
+            <button
+              className="profile__button-edit"
+              onClick={() => handleOpenPopup(editProfilePopup)}
+              type="button"
+            >
               <img
                 className="profile__button-edit-icon"
                 src={editButton}
