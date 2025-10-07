@@ -7,12 +7,14 @@ import { useState } from "react";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/NewCard/NewCard";
 import EditProfile from "./components/Popup/EditProfile/EditProfile";
+import EditAvatar from "./components/Popup/EditAvatar/EditAvatar";
 
 function Main() {
   const [popup, setPopup] = useState(null);
 
-  const newCardPopup = { title: "New card", children: <NewCard /> };
-  const editProfilePopup = { title: "Edit profile", children: <EditProfile /> };
+  const newCardPopup = { title: "New Card", children: <NewCard /> };
+  const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
+  const editAvatarPopup = { title: "Edit Avatar", children: <EditAvatar /> };
 
   function handleOpenPopup(popup) {
     setPopup(popup);
@@ -26,7 +28,11 @@ function Main() {
     <>
       <main className="content">
         <div className="profile">
-          <button className="profile__button-avatar">
+          <button
+            className="profile__button-avatar"
+            type="button"
+            onClick={() => handleOpenPopup(editAvatarPopup)}
+          >
             <div className="profile__avatar-container">
               <img
                 className="profile__avatar"
