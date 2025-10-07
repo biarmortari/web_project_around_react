@@ -14,11 +14,6 @@
   z-index: 1;
 }
 
-.popup_opened {
-  visibility: visible;
-  opacity: 1;
-}
-
 .popup__container {
   display: flex;
   flex-direction: column;
@@ -56,6 +51,7 @@
 }
 
 .modal-image {
+  position: relative;
   max-width: 75vw;
   max-height: 75vh;
   display: block;
@@ -156,6 +152,11 @@
 
 .popup__close-button:hover {
   opacity: 0.6;
+}
+
+.popup__container-image .popup__close-button {
+  top: -200px;
+  right: -100px;
 }
 
 .popup-confirmation,

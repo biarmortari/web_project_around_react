@@ -99,7 +99,7 @@ function Main() {
         <section className="cards">
           <ul className="cards__list">
             {cards.map((card) => (
-              <Card key={card._id} card={card} />
+              <Card key={card._id} card={card} onImageClick={handleOpenPopup} />
             ))}
           </ul>
         </section>
