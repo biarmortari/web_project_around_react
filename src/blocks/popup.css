@@ -155,8 +155,8 @@
 }
 
 .popup__container-image .popup__close-button {
-  top: -200px;
-  right: -100px;
+  top: -300px;
+  right: -300px;
 }
 
 .popup-confirmation,
@@ -176,17 +176,22 @@
     width: 26px;
     height: 26px;
   }
+
+  .popup__container-image .popup__close-button {
+    top: -200px;
+    right: -200px;
+  }
 }
 
-@media screen and (max-width: 601px) {
+@media screen and (max-width: 768px) {
   .popup {
     max-width: 88%;
     margin: auto 20px auto 20px;
   }
 
   .popup__container {
-    width: 282px;
-    height: 322px;
+    width: 500px;
+    height: auto;
     padding: 10px 12px;
   }
 
@@ -205,7 +210,21 @@
     height: 26px;
   }
 
+  .popup__container-image .popup__close-button {
+    top: -30px;
+    right: -30px;
+  }
+
   .popup__container_confirmation {
     height: 140px;
+  }
+}
+
+@media screen and (max-width: 481px) {
+  .popup__close-button {
+    top: -30px;
+    right: 1px;
+    width: 26px;
+    height: 26px;
   }
 }
