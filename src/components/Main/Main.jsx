@@ -1,4 +1,4 @@
-import avatar from "../../images/avatar.png";
+import Avatar from "../../images/Avatar.png";
 import editButton from "../../images/edit-button.svg";
 import addButton from "../../images/add-button.svg";
 import addButtonMobile from "../../images/add-button-mobile.svg";
@@ -29,8 +29,6 @@ const cards = [
   },
 ];
 
-console.log(cards);
-
 function Main() {
   const [popup, setPopup] = useState(null);
 
@@ -47,69 +45,67 @@ function Main() {
   }
 
   return (
-    <>
-      <main className="content">
-        <section className="profile">
-          <button
-            className="profile__button-avatar"
-            type="button"
-            onClick={() => handleOpenPopup(editAvatarPopup)}
-          >
-            <div className="profile__avatar-container">
-              <img
-                className="profile__avatar"
-                src={avatar}
-                alt="Foto de perfil"
-              />
-              <span className="profile__edit-icon"></span>
-            </div>
-          </button>
-          <div className="profile__info">
-            <div className="profile__text">
-              <span className="profile__text-name">Jacques Cousteau</span>
-              <span className="profile__text-description">Explorador</span>
-            </div>
-            <button
-              className="profile__button-edit"
-              onClick={() => handleOpenPopup(editProfilePopup)}
-              type="button"
-            >
-              <img
-                className="profile__button-edit-icon"
-                src={editButton}
-                alt="Botão de edição"
-              />
-            </button>
+    <main className="content">
+      <section className="profile">
+        <button
+          className="profile__button-avatar"
+          type="button"
+          onClick={() => handleOpenPopup(editAvatarPopup)}
+        >
+          <div className="profile__avatar-container">
+            <img
+              className="profile__avatar"
+              src={Avatar}
+              alt="Foto de perfil"
+            />
+            <span className="profile__edit-icon"></span>
+          </div>
+        </button>
+        <div className="profile__info">
+          <div className="profile__text">
+            <span className="profile__text-name">Jacques Cousteau</span>
+            <span className="profile__text-description">Explorador</span>
           </div>
           <button
-            className="profile__button-add"
+            className="profile__button-edit"
+            onClick={() => handleOpenPopup(editProfilePopup)}
             type="button"
-            onClick={() => handleOpenPopup(newCardPopup)}
           >
-            <picture>
-              <source media="(max-width: 601px)" src={addButtonMobile} />
-              <img
-                className="profile__button-add-icon"
-                src={addButton}
-                alt="Botao de ediçao"
-              />
-            </picture>
+            <img
+              className="profile__button-edit-icon"
+              src={editButton}
+              alt="Botão de edição"
+            />
           </button>
-        </section>
-        <section className="cards">
-          <ul className="cards__list">
-            {cards.map((card) => (
-              <Card key={card._id} card={card} onImageClick={handleOpenPopup} />
-            ))}
-          </ul>
-        </section>
-        {popup && (
-          <Popup onClose={handleClosePopup} title={popup.title}>
-            {popup.children}
-          </Popup>
-        )}
-      </main>
-    </>
+        </div>
+        <button
+          className="profile__button-add"
+          type="button"
+          onClick={() => handleOpenPopup(newCardPopup)}
+        >
+          <picture>
+            <source media="(max-width: 601px)" src={addButtonMobile} />
+            <img
+              className="profile__button-add-icon"
+              src={addButton}
+              alt="Botao de ediçao"
+            />
+          </picture>
+        </button>
+      </section>
+      <section className="cards">
+        <ul className="cards__list">
+          {cards.map((card) => (
+            <Card key={card._id} card={card} onImageClick={handleOpenPopup} />
+          ))}
+        </ul>
+      </section>
+      {popup && (
+        <Popup onClose={handleClosePopup} title={popup.title}>
+          {popup.children}
+        </Popup>
+      )}
+    </main>
   );
 }
 

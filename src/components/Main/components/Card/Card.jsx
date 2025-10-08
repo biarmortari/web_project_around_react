@@ -12,7 +12,7 @@ function Card(props) {
         <img
           className="card__image"
           src={link}
-          alt=""
+          alt={`Foto de ${name}`}
           onClick={() => onImageClick(imageComponent)}
         />
         <button
