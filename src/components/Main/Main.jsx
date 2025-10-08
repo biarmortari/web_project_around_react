@@ -32,9 +32,12 @@ const cards = [
 function Main() {
   const [popup, setPopup] = useState(null);
 
-  const newCardPopup = { title: "New Card", children: <NewCard /> };
-  const editProfilePopup = { title: "Edit Profile", children: <EditProfile /> };
-  const editAvatarPopup = { title: "Edit Avatar", children: <EditAvatar /> };
+  const newCardPopup = { title: "Novo Local", children: <NewCard /> };
+  const editProfilePopup = {
+    title: "Editar Perfil",
+    children: <EditProfile />,
+  };
+  const editAvatarPopup = { title: "Editar Avatar", children: <EditAvatar /> };
 
   function handleOpenPopup(popup) {
     setPopup(popup);
