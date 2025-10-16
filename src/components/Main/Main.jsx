@@ -1,36 +1,29 @@
-import Avatar from "../../images/Avatar.png";
+import React from "react";
+
 import editButton from "../../images/edit-button.svg";
 import addButton from "../../images/add-button.svg";
 import addButtonMobile from "../../images/add-button-mobile.svg";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/NewCard/NewCard";
 import EditProfile from "./components/Popup/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card";
-
-const cards = [
-  {
-    isLiked: false,
-    _id: "5d1f0611d321eb4bdcd707dd",
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-    owner: "5d1f0611d321eb4bdcd707dd",
-    createdAt: "2019-07-05T08:10:57.741Z",
-  },
-  {
-    isLiked: false,
-    _id: "5d1f064ed321eb4bdcd707de",
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-    owner: "5d1f0611d321eb4bdcd707dd",
-    createdAt: "2019-07-05T08:11:58.324Z",
-  },
-];
+import api from "../../utils/api";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Main() {
   const [popup, setPopup] = useState(null);
+  const [cards, setCards] = useState([]);
+
+  const currentUser = React.useContext(CurrentUserContext);
+
+  useEffect(() => {
+    api.getAppInfo().then(([cards]) => {
+      setCards(cards);
+    });
+  }, []);
 
   const newCardPopup = { title: "Novo Local", children: <NewCard /> };
   const editProfilePopup = {
@@ -58,7 +51,7 @@ function Main() {
           <div className="profile__avatar-container">
             <img
               className="profile__avatar"
-              src={Avatar}
+              src={currentUser.avatar}
               alt="Foto de perfil"
             />
             <span className="profile__edit-icon"></span>
@@ -66,8 +59,10 @@ function Main() {
         </button>
         <div className="profile__info">
           <div className="profile__text">
-            <span className="profile__text-name">Jacques Cousteau</span>
-            <span className="profile__text-description">Explorador</span>
+            <span className="profile__text-name">{currentUser.name}</span>
+            <span className="profile__text-description">
+              {currentUser.about}
+            </span>
           </div>
           <button
             className="profile__button-edit"
