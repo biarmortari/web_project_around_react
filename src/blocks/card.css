@@ -64,6 +64,11 @@
   transition: opacity 0.3s ease;
 }
 
+.card__like-button_active {
+  background: transparent url("../images/like-button-active.svg") no-repeat
+    center;
+}
+
 .card__like-button:hover {
   opacity: 0.5;
 }

@@ -5,11 +5,15 @@ function Card({ card, onImageClick, onDeleteCard, onCardLike }) {
   const currentUser = React.useContext(CurrentUserContext);
   const { name, link, likes = [] } = card;
 
-  const isLiked = likes.some((userId) => userId === currentUser._id);
+  const isLiked = likes.some((user) => user._id === currentUser._id);
 
   const cardLikeButtonClassName = `card__like-button ${
-    isLiked ? "card__like-button_is-active" : ""
+    isLiked ? "card__like-button_active" : ""
   }`;
+
+  function handleLikeClick() {
+    onCardLike(card);
+  }
 
   return (
     <li className="card">
@@ -31,7 +35,7 @@ function Card({ card, onImageClick, onDeleteCard, onCardLike }) {
           aria-label="Like card"
           type="button"
           className={cardLikeButtonClassName}
-          onClick={() => onCardLike(card)}
+          onClick={handleLikeClick}
         ></button>
       </div>
     </li>

@@ -40,6 +40,21 @@ function Main() {
     setPopup(null);
   }
 
+  async function handleCardLike(card) {
+    const isLiked = card.isLiked;
+
+    await api
+      .updateLike(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((currentCard) =>
+            currentCard._id === card._id ? newCard : currentCard
+          )
+        );
+      })
+      .catch((error) => console.error(error));
+  }
+
   return (
     <main className="content">
       <section className="profile">
@@ -94,7 +109,12 @@ function Main() {
       <section className="cards">
         <ul className="cards__list">
           {cards.map((card) => (
-            <Card key={card._id} card={card} onImageClick={handleOpenPopup} />
+            <Card
+              key={card._id}
+              card={card}
+              onImageClick={handleOpenPopup}
+              onCardLike={handleCardLike}
+            />
           ))}
         </ul>
       </section>
