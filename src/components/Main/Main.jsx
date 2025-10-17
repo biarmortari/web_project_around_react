@@ -42,17 +42,26 @@ function Main() {
 
   async function handleCardLike(card) {
     const isLiked = card.isLiked;
+    try {
+      const newCard = await api.updateLike(card._id, !isLiked);
 
-    await api
-      .updateLike(card._id, !isLiked)
-      .then((newCard) => {
-        setCards((state) =>
-          state.map((currentCard) =>
-            currentCard._id === card._id ? newCard : currentCard
-          )
-        );
-      })
-      .catch((error) => console.error(error));
+      setCards((prevCards) =>
+        prevCards.map((currentCard) =>
+          currentCard._id === card._id ? newCard : currentCard
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleCardDelete(card) {
+    try {
+      await api.deleteCard(card._id);
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -114,6 +123,7 @@ function Main() {
               card={card}
               onImageClick={handleOpenPopup}
               onCardLike={handleCardLike}
+              onDeleteCard={handleCardDelete}
             />
           ))}
         </ul>
