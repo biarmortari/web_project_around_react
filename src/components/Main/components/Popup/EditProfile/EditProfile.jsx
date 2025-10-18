@@ -1,4 +1,20 @@
+import { useState } from "react";
+import CurrentUserContext from "../../../../../contexts/CurrentUserContext";
+
 function EditProfile() {
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const [name, setName] = useState(currentUser.name);
+  const [description, setDescription] = useState(currentUser.about);
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
   return (
     <>
       <form
@@ -16,6 +32,8 @@ function EditProfile() {
           required
           minLength="2"
           maxLength="40"
+          value={name}
+          onChange={handleNameChange}
         />
         <span id="name-error" className="popup__error"></span>
 
@@ -29,6 +47,8 @@ function EditProfile() {
           required
           minLength="2"
           maxLength="200"
+          value={description}
+          onChange={handleDescriptionChange}
         />
         <span id="about-error" className="popup__error"></span>
 

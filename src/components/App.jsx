@@ -18,9 +18,17 @@ function App() {
       .catch((err) => console.log("Erro ao buscar dados do usuário:", err));
   }, []);
 
+  const handleUpdateUser = (data) => {
+    (async () => {
+      await api.updateUserInfo(data).then((newData) => {
+        setCurrentUser(newData);
+      });
+    })();
+  };
+
   return (
     <>
-      <CurrentUserContext.Provider value={currentUser}>
+      <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
         <div className="page">
           <Header />
           <Main />
