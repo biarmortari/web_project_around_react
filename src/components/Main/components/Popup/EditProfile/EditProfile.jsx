@@ -17,7 +17,6 @@ function EditProfile() {
   };
 
   const handleSubmit = (event) => {
-    console.log(currentUser);
     const { handleUpdateUser } = currentUser;
     event.preventDefault();
     handleUpdateUser({

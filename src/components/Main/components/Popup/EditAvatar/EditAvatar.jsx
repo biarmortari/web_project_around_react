@@ -1,4 +1,8 @@
+import { useRef } from "react";
+
 function EditAvatar() {
+  const avatarRef = useRef(null);
+
   return (
     <form
       className="popup__form popup__form_avatar"
@@ -12,7 +16,7 @@ function EditAvatar() {
         name="avatar"
         className="popup__input"
         placeholder="Link da foto de perfil"
-        required
+        ref={avatarRef}
       />
       <span id="link-error" className="popup__error"></span>
 
