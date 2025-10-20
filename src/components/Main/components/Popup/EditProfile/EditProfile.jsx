@@ -1,8 +1,9 @@
-import { useState } from "react";
+import React from "react";
+import { useState, useContext } from "react";
 import CurrentUserContext from "../../../../../contexts/CurrentUserContext";
 
 function EditProfile() {
-  const currentUser = React.useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   const [name, setName] = useState(currentUser.name);
   const [description, setDescription] = useState(currentUser.about);
@@ -15,12 +16,23 @@ function EditProfile() {
     setDescription(event.target.value);
   };
 
+  const handleSubmit = (event) => {
+    console.log(currentUser);
+    const { handleUpdateUser } = currentUser;
+    event.preventDefault();
+    handleUpdateUser({
+      name: name,
+      about: description,
+    });
+  };
+
   return (
     <>
       <form
         className="popup__form popup__form_profile"
         id="popup__form_profile"
         name="popup__form_profile"
+        onSubmit={handleSubmit}
       >
         <label htmlFor="name" className="popup__label"></label>
         <input

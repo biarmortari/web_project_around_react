@@ -1,8 +1,9 @@
 import React from "react";
+import { useContext } from "react";
 import CurrentUserContext from "../../../../contexts/CurrentUserContext";
 
 function Card({ card, onImageClick, onDeleteCard, onCardLike }) {
-  const currentUser = React.useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
   const { name, link, likes = [] } = card;
 

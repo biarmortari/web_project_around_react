@@ -4,8 +4,7 @@ import editButton from "../../images/edit-button.svg";
 import addButton from "../../images/add-button.svg";
 import addButtonMobile from "../../images/add-button-mobile.svg";
 
-import { useEffect, useState } from "react";
-import Popup from "./components/Popup/Popup";
+import { useEffect, useState, useContext } from "react";
 import NewCard from "./components/Popup/NewCard/NewCard";
 import EditProfile from "./components/Popup/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/EditAvatar/EditAvatar";
@@ -14,10 +13,10 @@ import api from "../../utils/api";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Main() {
-  const [popup, setPopup] = useState(null);
   const [cards, setCards] = useState([]);
 
-  const currentUser = React.useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
+  const { handleOpenPopup, handleClosePopup } = useContext(CurrentUserContext);
 
   useEffect(() => {
     api.getAppInfo().then(([cards]) => {
@@ -31,14 +30,6 @@ function Main() {
     children: <EditProfile />,
   };
   const editAvatarPopup = { title: "Editar Avatar", children: <EditAvatar /> };
-
-  function handleOpenPopup(popup) {
-    setPopup(popup);
-  }
-
-  function handleClosePopup() {
-    setPopup(null);
-  }
 
   async function handleCardLike(card) {
     const isLiked = card.isLiked;
@@ -128,11 +119,6 @@ function Main() {
           ))}
         </ul>
       </section>
-      {popup && (
-        <Popup onClose={handleClosePopup} title={popup.title}>
-          {popup.children}
-        </Popup>
-      )}
     </main>
   );
 }
