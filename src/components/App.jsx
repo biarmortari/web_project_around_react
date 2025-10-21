@@ -41,12 +41,23 @@ function App() {
     setPopup(null);
   }
 
+  const handleUpdateAvatar = async (data) => {
+    try {
+      const newData = await api.updateAvatar(data);
+      setCurrentUser(newData);
+      handleClosePopup();
+    } catch (error) {
+      console.error("Erro ao atualizar avatar:", error);
+    }
+  };
+
   return (
     <>
       <CurrentUserContext.Provider
         value={{
           currentUser,
           handleUpdateUser,
+          handleUpdateAvatar,
           handleOpenPopup,
           handleClosePopup,
         }}

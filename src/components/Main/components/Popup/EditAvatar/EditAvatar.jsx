@@ -3,11 +3,20 @@ import { useRef } from "react";
 function EditAvatar() {
   const avatarRef = useRef(null);
 
+  const handleSubmit = (event) => {
+    e.preventDefault();
+
+    onUpdateAvatar({
+      avatar: avatarRef.current.value,
+    });
+  };
+
   return (
     <form
       className="popup__form popup__form_avatar"
       id="popup__form_avatar"
       name="popup__form_avatar"
+      onSubmit={handleSubmit}
     >
       <label htmlFor="link" className="popup__label"></label>
       <input
