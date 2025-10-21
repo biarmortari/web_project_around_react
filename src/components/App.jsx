@@ -10,6 +10,7 @@ import CurrentUserContext from "../contexts/CurrentUserContext";
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [popup, setPopup] = useState(null);
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -28,6 +29,7 @@ function App() {
     try {
       const newData = await api.updateUserInfo(data);
       setCurrentUser(newData);
+      handleClosePopup();
     } catch (error) {
       console.error("Erro ao atualizar usuário:", error);
     }
@@ -51,6 +53,46 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    api.getAppInfo().then(([cards]) => {
+      setCards(cards);
+    });
+  }, []);
+
+  async function handleCardLike(card) {
+    try {
+      const newCard = await api.updateLike(card._id, !card.isLiked);
+
+      setCards((prevCards) =>
+        prevCards.map((currentCard) =>
+          currentCard._id === card._id ? newCard : currentCard
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleCardDelete(card) {
+    try {
+      await api.deleteCard(card._id);
+      setCards((state) => state.filter((c) => c._id !== card._id));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleAddPlaceSubmit(newCardData) {
+    console.log(newCardData);
+    try {
+      const newCard = await api.addCard(newCardData);
+      setCards((prev) => [newCard, ...prev]);
+      handleClosePopup();
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   return (
     <>
       <CurrentUserContext.Provider
@@ -60,6 +102,10 @@ function App() {
           handleUpdateAvatar,
           handleOpenPopup,
           handleClosePopup,
+          cards,
+          handleCardLike,
+          handleCardDelete,
+          handleAddPlaceSubmit,
         }}
       >
         <div className="page">

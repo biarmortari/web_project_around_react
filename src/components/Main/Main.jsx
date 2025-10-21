@@ -1,59 +1,33 @@
-import React from "react";
-
 import editButton from "../../images/edit-button.svg";
 import addButton from "../../images/add-button.svg";
 import addButtonMobile from "../../images/add-button-mobile.svg";
 
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import NewCard from "./components/Popup/NewCard/NewCard";
 import EditProfile from "./components/Popup/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/EditAvatar/EditAvatar";
 import Card from "./components/Card/Card";
-import api from "../../utils/api";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Main() {
-  const [cards, setCards] = useState([]);
+  const {
+    currentUser,
+    handleOpenPopup,
+    cards,
+    handleCardLike,
+    handleCardDelete,
+    handleAddPlaceSubmit,
+  } = useContext(CurrentUserContext);
 
-  const { currentUser } = useContext(CurrentUserContext);
-  const { handleOpenPopup, handleClosePopup } = useContext(CurrentUserContext);
-
-  useEffect(() => {
-    api.getAppInfo().then(([cards]) => {
-      setCards(cards);
-    });
-  }, []);
-
-  const newCardPopup = { title: "Novo Local", children: <NewCard /> };
+  const newCardPopup = {
+    title: "Novo Local",
+    children: <NewCard onAddPlaceSubmit={handleAddPlaceSubmit} />,
+  };
   const editProfilePopup = {
     title: "Editar Perfil",
     children: <EditProfile />,
   };
   const editAvatarPopup = { title: "Editar Avatar", children: <EditAvatar /> };
-
-  async function handleCardLike(card) {
-    const isLiked = card.isLiked;
-    try {
-      const newCard = await api.updateLike(card._id, !isLiked);
-
-      setCards((prevCards) =>
-        prevCards.map((currentCard) =>
-          currentCard._id === card._id ? newCard : currentCard
-        )
-      );
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  async function handleCardDelete(card) {
-    try {
-      await api.deleteCard(card._id);
-      setCards((state) => state.filter((c) => c._id !== card._id));
-    } catch (error) {
-      console.error(error);
-    }
-  }
 
   return (
     <main className="content">

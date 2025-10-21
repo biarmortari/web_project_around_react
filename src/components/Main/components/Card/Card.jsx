@@ -1,13 +1,7 @@
-import React from "react";
-import { useContext } from "react";
-import CurrentUserContext from "../../../../contexts/CurrentUserContext";
-
 function Card({ card, onImageClick, onDeleteCard, onCardLike }) {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { name, link } = card;
 
-  const { name, link, likes = [] } = card;
-
-  const isLiked = likes.some((user) => user._id === currentUser._id);
+  const isLiked = card.isLiked;
 
   const cardLikeButtonClassName = `card__like-button ${
     isLiked ? "card__like-button_active" : ""
@@ -21,13 +15,17 @@ function Card({ card, onImageClick, onDeleteCard, onCardLike }) {
     onDeleteCard(card);
   }
 
+  function handleImageClick() {
+    onImageClick(card);
+  }
+
   return (
     <li className="card">
       <img
         className="card__image"
         src={link}
         alt={`Foto de ${name}`}
-        onClick={() => onImageClick(card)}
+        onClick={handleImageClick}
       />
       <button
         aria-label="Delete card"
