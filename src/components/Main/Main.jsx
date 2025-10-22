@@ -2,10 +2,11 @@ import editButton from "../../images/edit-button.svg";
 import addButton from "../../images/add-button.svg";
 import addButtonMobile from "../../images/add-button-mobile.svg";
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import NewCard from "./components/Popup/NewCard/NewCard";
 import EditProfile from "./components/Popup/EditProfile/EditProfile";
 import EditAvatar from "./components/Popup/EditAvatar/EditAvatar";
+import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
 import Card from "./components/Card/Card";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
@@ -19,14 +20,26 @@ function Main() {
     handleAddPlaceSubmit,
   } = useContext(CurrentUserContext);
 
+  const [selectedCard, setSelectedCard] = useState({});
+
+  function handleImageClick(card) {
+    setSelectedCard(card);
+    handleOpenPopup({
+      title: "",
+      children: <ImagePopup card={card} />,
+    });
+  }
+
   const newCardPopup = {
     title: "Novo Local",
     children: <NewCard onAddPlaceSubmit={handleAddPlaceSubmit} />,
   };
+
   const editProfilePopup = {
     title: "Editar Perfil",
     children: <EditProfile />,
   };
+
   const editAvatarPopup = { title: "Editar Avatar", children: <EditAvatar /> };
 
   return (
@@ -86,7 +99,7 @@ function Main() {
             <Card
               key={card._id}
               card={card}
-              onImageClick={handleOpenPopup}
+              onImageClick={handleImageClick}
               onCardLike={handleCardLike}
               onDeleteCard={handleCardDelete}
             />

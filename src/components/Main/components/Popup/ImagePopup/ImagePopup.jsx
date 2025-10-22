@@ -1,9 +1,12 @@
-function ImagePopup(props) {
-  const { card } = props;
+function ImagePopup({ card }) {
   return (
     <div className="image-wrapper">
-      <img className="modal-image" src={card.link} alt={card.name} />
-      <p className="modal__caption">{card.name}</p>
+      {card && (
+        <>
+          <img className="modal-image" src={card.link} alt={card.name} />
+          <p className="modal__caption">{card.name}</p>
+        </>
+      )}
     </div>
   );
 }
