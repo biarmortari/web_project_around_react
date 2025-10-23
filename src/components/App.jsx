@@ -106,6 +106,7 @@ function App() {
           handleCardLike,
           handleCardDelete,
           handleAddPlaceSubmit,
+          popup,
         }}
       >
         <div className="page">
@@ -116,11 +117,6 @@ function App() {
             popup={popup}
           />
           <Footer />
-          {popup && (
-            <Popup onClose={handleClosePopup} title={popup.title}>
-              {popup.children}
-            </Popup>
-          )}
         </div>
       </CurrentUserContext.Provider>
     </>
