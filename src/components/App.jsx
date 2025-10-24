@@ -1,8 +1,7 @@
 import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
-import Popup from "../components/Main/components/Popup/Popup";
-import api from "../utils/api";
+import Api from "../utils/Api";
 import "../contexts/CurrentUserContext";
 import { useState, useEffect } from "react";
 import CurrentUserContext from "../contexts/CurrentUserContext";
@@ -15,7 +14,7 @@ function App() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const userData = await api.getUserInfo();
+        const userData = await Api.getUserInfo();
         setCurrentUser(userData);
       } catch (err) {
         console.log("Erro ao buscar dados do usuário:", err);
@@ -27,7 +26,7 @@ function App() {
 
   const handleUpdateUser = async (data) => {
     try {
-      const newData = await api.updateUserInfo(data);
+      const newData = await Api.updateUserInfo(data);
       setCurrentUser(newData);
       handleClosePopup();
     } catch (error) {
@@ -45,7 +44,7 @@ function App() {
 
   const handleUpdateAvatar = async (data) => {
     try {
-      const newData = await api.updateAvatar(data);
+      const newData = await Api.updateAvatar(data);
       setCurrentUser(newData);
       handleClosePopup();
     } catch (error) {
@@ -54,14 +53,14 @@ function App() {
   };
 
   useEffect(() => {
-    api.getAppInfo().then(([cards]) => {
+    Api.getAppInfo().then(([cards]) => {
       setCards(cards);
     });
   }, []);
 
   async function handleCardLike(card) {
     try {
-      const newCard = await api.updateLike(card._id, !card.isLiked);
+      const newCard = await Api.updateLike(card._id, !card.isLiked);
 
       setCards((prevCards) =>
         prevCards.map((currentCard) =>
@@ -75,7 +74,7 @@ function App() {
 
   async function handleCardDelete(card) {
     try {
-      await api.deleteCard(card._id);
+      await Api.deleteCard(card._id);
       setCards((state) => state.filter((c) => c._id !== card._id));
     } catch (error) {
       console.error(error);
@@ -85,7 +84,7 @@ function App() {
   async function handleAddPlaceSubmit(newCardData) {
     console.log(newCardData);
     try {
-      const newCard = await api.addCard(newCardData);
+      const newCard = await Api.addCard(newCardData);
       setCards((prev) => [newCard, ...prev]);
       handleClosePopup();
     } catch (err) {
