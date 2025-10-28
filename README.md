@@ -1,16 +1,51 @@
-# React + Vite
+# EUA Afora 🌎
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descrição do Projeto
 
-Currently, two official plugins are available:
+Este projeto, intitulado "Around the U.S.", é uma **plataforma interativa desenvolvida em React** que visa compartilhar fotos de diferentes lugares nos Estados Unidos. O objetivo é proporcionar aos visitantes uma experiência imersiva, permitindo que **compartilhem suas experiências, fotos e histórias** relacionadas a diferentes regiões do país.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ele faz parte das últimas _sprints_ do bootcamp de Desenvolvimento Web da TripleTen, onde o foco foi a transição de JavaScript puro para o uso de uma biblioteca moderna como o **React** e a manutenção da **integração com a API** do servidor da TripleTen.
 
-## React Compiler
+A aplicação utiliza React para:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Construir interfaces dinâmicas e reativas.
+- Gerenciar o estado de forma eficiente com _hooks_ (`useState`, `useEffect`).
+- Promover a reutilização de componentes.
+- Manter a conexão com o servidor para persistência de dados (CRUD).
 
-## Expanding the ESLint configuration
+## Funcionalidades Implementadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+O projeto mantém as funcionalidades completas de uma aplicação moderna, agora implementadas com React:
+
+✅ **Criação e Gerenciamento de Cartões:** Adição, visualização, curtidas e exclusão de cartões de imagem interativos.
+✅ **Edição de Perfil:** Atualização de nome e descrição do usuário.
+✅ **Interação com API:** O site consome a API do servidor da TripleTen para todas as operações de CRUD (_Create, Read, Update, Delete_).
+✅ **Gerenciamento de Estado:** Uso de `useState` e `useEffect` para controle de componentes e reatividade da interface.
+✅ **UX Aprimorada:** Interface fluida e organizada, aproveitando a natureza declarativa do React.
+✅ **Responsividade:** Design totalmente adaptável a diferentes tamanhos de tela (smartphones, tablets e desktops).
+
+## Tecnologias e Boas Práticas
+
+O desenvolvimento foi focado no uso eficiente das seguintes tecnologias e técnicas:
+
+| Categoria       | Tecnologia/Técnica       | Descrição                                                                                                             |
+| :-------------- | :----------------------- | :-------------------------------------------------------------------------------------------------------------------- |
+| **Framework**   | **React**                | Biblioteca JavaScript essencial para construção de interfaces dinâmicas e reativas, usando componentes reutilizáveis. |
+| **Linguagem**   | **JSX (JavaScript XML)** | Facilita a escrita de componentes React, combinando JavaScript com a estrutura declarativa semelhante ao HTML.        |
+| **Estilização** | **CSS Modularizado**     | Uso de **CSS Modules** para garantir o encapsulamento dos estilos e evitar conflitos globais entre classes.           |
+| **Estrutura**   | **Organização Modular**  | Código estruturado de forma organizada, separando a lógica dos componentes e seguindo boas práticas de manutenção.    |
+| **Web Vitals**  | **Estrutura Semântica**  | Manutenção da semântica HTML5, mesmo utilizando React, para acessibilidade e melhor organização do conteúdo.          |
+| **Otimização**  | **Boas Práticas de SEO** | Inclusão de _metatags_ e estrutura de cabeçalho para otimizar a visibilidade em motores de busca.                     |
+
+## Desafios enfrentados
+
+Este projeto marcou a **transição do JavaScript puro para o React**, exigindo a reescrita de toda a lógica do DOM e do gerenciamento de estado para o modelo de componentes e _hooks_. O principal desafio foi:
+
+- Dominar o **ciclo de vida dos componentes** e o uso correto de `useEffect` para sincronizar o estado da aplicação com a API externa.
+- Garantir que todas as **funcionalidades de CRUD** fossem reimplementadas de forma eficiente e reativa no ecossistema React.
+
+## Visite o site ao vivo
+
+O site está disponível no GitHub Pages:
+
+[**Clique aqui para acessar o projeto no GitHub Pages**](https://webprojectaroundreact.vercel.app)
