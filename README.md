@@ -48,4 +48,4 @@ Este projeto marcou a **transição do JavaScript puro para o React**, exigindo 
 
 O site está disponível no GitHub Pages:
 
-[**Clique aqui para acessar o projeto no GitHub Pages**](https://webprojectaroundreact.vercel.app)
+[**Clique aqui para acessar o projeto ao vivo**](https://webprojectaroundreact.vercel.app)
