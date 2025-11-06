@@ -46,4 +46,4 @@ Este projeto marcou a **transição do JavaScript puro para o React**, exigindo 
 
 ## Visite o site ao vivo
 
-[**A aplicação foi implantada na Vercel e pode ser acessada aqui.**](https://webprojectaroundreact.vercel.app)
+[**A aplicação foi implantada na Vercel e pode ser acessada aqui.**](https://web-project-around-react-three.vercel.app)
